@@ -1,12 +1,129 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>FIFA World Cup Dashboard</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <meta charset="UTF-8">
+    <title>FIFA Football World Cup</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"> </script>
+    <script src="./main.js"></script> 
 </head>
 <body>
-    <h1>FIFA World Cup Dashboard</h1>
-    <canvas id="barChart" width="800" height="400"></canvas>
-    <script src="http://127.0.0.1:5000/tournaments/static/main.js"></script> 
+    <h1>FIFA Football World Cup Data</h1></br>
+    <div style="width: 1000px; height: 600px;">
+        <canvas id="barChart"></canvas>
+    </div>
+    <h2>Update Winner Country</h2>
+    <!--Text box for Tournament_ID-->
+    <label for="tournament_id">Tournament ID:</label>
+    <input type="text" id="tournament_id" name="tournament_id"></br></br>
+    <label for="winner">Winner Country:</label>
+    <select id="winner">
+        <option>Country</option>
+        <option value="Italy">Italy</option>
+        <option value="Uruguay">Uruguay</option>
+	    <option value="West Germany">West German</option>
+	    <option value="Brazil">Brazil</option>
+	    <option value="England">England</option>
+	    <option value="Argentina">Argentina</option>
+	    <option value="United States">United States</option>
+	    <option value="Norway">Norway</option>
+	    <option value="France">France</option>
+	    <option value="Spain">Spain</option>
+	    <option value="Japan">Japan</option>
+    </select>
+    <!--button for update country-->
+    <button onclick="updateWinner()">Update Country</button></br></br>
+    <!--Button for Delete Tournament-->
+    <h2>Delete Tournament</h2>
+    <label for="tournament_id">Enter Tournament ID:</label>
+    <input type="text" id="tournament_id" name="tournament_id"></br></br>
+    <button onclick="deleteTournament()">Delete Tournament</button></br></br>
+    <h2>Award_Winner Tournament</h2>
+    <!--For Award_Winners-->
+    <h3>Tournament Id:</h3>
+    <select id="SelectTournamentID">
+        <option>Tournaments</option>
+        <option value="WC-2018">WC-2018</option>
+        <option value="WC-2019">WC-2019</option>
+        <option value="WC-2022">WC-2022</option>
+        <option value="WC-2015">WC-2015</option>
+        <option value="WC-2014">WC-2014</option>
+        <option value="WC-2011">WC-2011</option>
+        <option value="WC-2010">WC-2010</option>
+        <option value="WC-2007">WC-2007</option>
+        <option value="WC-2006">WC-2006</option>
+        <option value="WC-2003">WC-2003</option>
+        <option value="WC-2002">WC-2002</option>
+        <option value="WC-1999">WC-1999</option>
+        <option value="WC-1998">WC-1998</option>
+        <option value="WC-1995">WC-1995</option>
+        <option value="WC-1994">WC-1994</option>
+        <option value="WC-1991">WC-1991</option>
+        <option value="WC-1990">WC-1990</option>
+        <option value="WC-1986">WC-1986</option>
+        <option value="WC-1982">WC-1982</option>
+        <option value="WC-1978">WC-1978</option>
+        <option value="WC-1974">WC-1974</option>
+        <option value="WC-1970">WC-1970</option>
+        <option value="WC-1966">WC-1966</option>
+        <option value="WC-1962">WC-1962</option>
+        <option value="WC-1958">WC-1958</option>
+        <option value="WC-1954">WC-1954</option>
+        <option value="WC-1950">WC-1950</option>
+        <option value="WC-1938">WC-1938</option>
+        <option value="WC-1934">WC-1934</option>
+        <option value="WC-1930">WC-1930</option>
+    </select>   
+    <!--Display Awards for Tournament-->
+    
+    <div style="width: 1000px; height: 600px;">
+        <canvas id="PieChart" width="400" height="400"></canvas>
+    </div>
+
+    <h2>Insert new record for Award winner</h2>
+    <button id="insertAwardWinner">Create Award Winner</button></br></br>
+    <form id="submit_form" style="display: none;">
+
+        <label for="key_id">key_id :</label>
+        <input type="text" id="key_id" name="key_id" required>
+
+        <label for="tournament_id">tournament_id:</label>
+        <input type="text" id="tournament_id" name="tournament_id" required>
+
+        <label for="tournament_name">tournament_name:</label>
+        <input type="text" id="tournament_name" name="tournament_name" required>
+
+        <label for="award_id">award_id:</label>
+        <input type="text" id="award_id" name="award_id" required>
+
+        <label for="award_name">award_name:</label>
+        <input type="text" id="award_name" name="award_name" required>
+
+        <label for="shared">shared:</label>
+        <input type="number" id="shared" name="shared" required>
+
+        <label for="player_id">player_id:</label>
+        <input type="text" id="player_id" name="player_id" required>
+
+        <label for="family_name">family_name:</label>
+        <input type="text" id="family_name" name="family_name" required>
+
+        <label for="given_name">given_name:</label>
+        <input type="text" id="given_name" name="given_name" required>
+
+        <label for="team_id"> team_id:</label>
+        <input type="text" id="team_id" name="team_id" required>
+
+        <label for="team_name"> team_name:</label>
+        <input type="text" id="team_name" name="team_name" required>
+
+        <label for="team_code"> team_id:</label>
+        <input type="text" id="team_code" name="team_code" required>
+
+        <button type="submit">Submit</button></br></br></br></br>
+    </form>
+
+    <script src="./main_Award.js"></script> 
 </body>
 </html>
+
